@@ -1,153 +1,157 @@
+import { useState, useEffect } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import ProjectLayout from "../../components/ProjectLayout";
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
+import TabCarousel from "../../components/TabCarousel";
+
+// Hero
+import heroBanner from "../../assets/banner_designs_pagina's/THMO_Banner_text.png";
+
+// Verpleegkunde — Statisch (4x5)
+import vStatic1 from "../../assets/WEBSITE BESTANDEN/THMO/Verpleegkunde/Statisch/4x5 Static 1.png";
+import vStatic2 from "../../assets/WEBSITE BESTANDEN/THMO/Verpleegkunde/Statisch/4x5 Static 2.png";
+import vStatic3 from "../../assets/WEBSITE BESTANDEN/THMO/Verpleegkunde/Statisch/4x5 Static 3.png";
+
+// Verpleegkunde — Carrousel (4x5)
+import vCarr1 from "../../assets/WEBSITE BESTANDEN/THMO/Verpleegkunde/Carrousel/4x5 Carrousel 1.png";
+import vCarr2 from "../../assets/WEBSITE BESTANDEN/THMO/Verpleegkunde/Carrousel/4x5 Carrousel 2.png";
+import vCarr3 from "../../assets/WEBSITE BESTANDEN/THMO/Verpleegkunde/Carrousel/4x5 Carrousel 3.png";
+
+// Vroedkunde — Sell statisch
+import sellS1 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/Sell_static1_4x5.png";
+import sellS2 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/Sell_static2_4x5.png";
+import sellS3 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/Sell_static3_4x5.png";
+import sellS4 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/Sell_static4_4x5.png";
+
+// Vroedkunde — Touch statisch
+import touchS1 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/touch_static1_4x5.png";
+import touchS2 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/touch_static2_4x5.png";
+import touchS3 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/touch_static3_4x5.png";
+import touchS4 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Statisch/touch_static4_4x5.png";
+
+// Vroedkunde — Touch carrousel
+import touchC1 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Carrousel/Touch_Carrousel_1_4x5.png";
+import touchC2 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Carrousel/Touch_Carrousel_2_4x5.png";
+import touchC3 from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Carrousel/Touch_Carrousel_3_4x5.png";
+
+// Videos
+import videoVerpleegkunde from "../../assets/WEBSITE BESTANDEN/THMO/Verpleegkunde/Motion/4 5 THMO_Video verpleegkunde.mp4";
+import videoVroedkundeSell from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Motion/THMO_Vroedkunde_Sell_1.mp4";
+import videoVroedkundeTouch from "../../assets/WEBSITE BESTANDEN/THMO/Vroedkunde/Motion/THMO_Vroedkunde_Touch.mp4";
+
+const verpleegkundeTabs = [
+  { label: "Statisch", images: [vStatic1, vStatic2, vStatic3] },
+  { label: "Carrousel", images: [vCarr1, vCarr2, vCarr3] },
+];
+
+const vroedkundeTabs = [
+  { label: "Sell",            images: [sellS1, sellS2, sellS3, sellS4] },
+  { label: "Touch statisch",  images: [touchS1, touchS2, touchS3, touchS4] },
+  { label: "Touch carrousel", images: [touchC1, touchC2, touchC3] },
+];
+
+const motionVideos = [
+  { label: "Verpleegkunde", src: videoVerpleegkunde },
+  { label: "Vroedkunde Sell",  src: videoVroedkundeSell },
+  { label: "Vroedkunde Touch", src: videoVroedkundeTouch },
+];
+
+function VideoSection() {
+  const [active, setActive] = useState(0);
+  const [imgIdx, setImgIdx] = useState(0);
+
+  function goTo(i: number) { setActive(i); setImgIdx(0); }
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex flex-wrap gap-4 mb-6 justify-center">
+        {motionVideos.map((v, i) => (
+          <button
+            key={v.label}
+            onClick={() => goTo(i)}
+            className={`text-xs font-bold transition-colors ${i === active ? "text-white" : "text-white/40 hover:text-white/70"}`}
+          >
+            {v.label}
+          </button>
+        ))}
+      </div>
+      <div className="relative bg-[#1e1440] rounded-xl flex-grow flex items-center justify-center p-4 min-h-[280px]">
+        <video
+          key={motionVideos[active].src}
+          src={motionVideos[active].src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          className="max-h-[360px] w-auto rounded-lg shadow-lg object-contain"
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function ThomasMore() {
+  useEffect(() => { document.title = "Thomas More — Brent Demulder"; }, []);
   return (
     <ProjectLayout currentProject="Thomas More">
-      {/* Header Info */}
+
+      {/* Header */}
       <div className="mb-10">
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-accent mb-2 block">
-          Eindproject
+        <span className="text-[10px] font-bold uppercase tracking-widest text-[#f05a28] mb-2 block bg-[#f05a28]/20 w-fit px-3 py-1 rounded-full border border-[#f05a28]/30">
+          STAGEPROJECT
         </span>
-        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">
+        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#f05a28] to-[#ff9a6c]">
           Thomas More
         </h1>
-        <p className="text-sm text-brand-secondary max-w-2xl">
-          Oscare is een bedrijf die zich focust op het verzorgen van brandwondes en littekenverzorging. Mijn opdracht hierbij was om een campagne uit te schrijven voor de Escape Fire Truck!
-          {/* Note: Same placeholder text as in Figma screenshot */}
+        <p className="text-sm text-white/60 max-w-2xl">
+          Social media campagnes voor Thomas More Hogeschool — verpleegkunde en vroedkunde opleidingen in de kijker gezet via statische posts, carousels en motion designs.
         </p>
       </div>
 
-      {/* Hero Image */}
-      <div className="rounded-2xl overflow-hidden mb-12 h-64 md:h-96 relative bg-[#110d14]">
-         <div className="absolute inset-0 flex items-center p-8 md:p-12">
-            <div className="max-w-md z-10">
-               <div className="flex items-center gap-2 mb-6">
-                  <span className="text-white font-display font-black text-2xl tracking-tighter">THOMAS</span>
-                  <div className="w-12 h-1 bg-[#f05a28]"></div>
-               </div>
-               <h2 className="text-2xl md:text-4xl font-display text-white font-light leading-tight mb-4">
-                  Vorm de toekomst<br/>
-                  met <span className="text-[#f05a28] font-bold">kennis die werkt.</span>
-               </h2>
-               <p className="text-[#f05a28] font-bold text-sm mb-2">Praktisch. Persoonlijk. Professioneel.</p>
-               <p className="text-white/60 text-xs">
-                  Hoger onderwijs dat je voorbereidt op de praktijk. Ontdek opleidingen die aansluiten bij jouw talent en ambitie.
-               </p>
-            </div>
-            
-            {/* Abstract background flow */}
-            <div className="absolute inset-0 right-0 overflow-hidden">
-               <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-[#f05a28]/20 to-transparent blur-3xl"></div>
-            </div>
-         </div>
+      {/* Hero */}
+      <div className="rounded-2xl overflow-hidden mb-12 h-64 md:h-96 relative">
+        <img loading="lazy" src={heroBanner} alt="Thomas More" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
       </div>
 
-      {/* Grid Layout */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* Top Left - Project Info */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 h-full">
+
+        {/* Project info */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
           <h3 className="text-2xl font-display font-bold text-white mb-4">Project:</h3>
-          <div className="text-[11px] text-brand-secondary space-y-4">
+          <div className="text-sm text-white/70 space-y-4 leading-relaxed">
             <p>
-              Deze opdracht heb ik ook al de eerste dag van stage gekregen, waarbij ik meteen in een meeting werd gezet. Dit project was net van start gegaan, dus kon hem helemaal mee maken. We moesten <span className="text-[#f05a28] font-bold">sociale media posts</span> maken voor een campagne van <span className="text-[#f05a28] font-bold">verpleegkunde</span>, waar later ook nog <span className="text-[#f05a28] font-bold">vroedkunde</span> bij kwam.
+              Dit project heb ik al de eerste dag van stage gekregen. We moesten <span className="text-[#f05a28] font-bold">sociale media posts</span> maken voor een campagne van <span className="text-[#f05a28] font-bold">verpleegkunde</span>, waar later <span className="text-[#f05a28] font-bold">vroedkunde</span> bij kwam.
             </p>
             <p>
-              Ik was begonnen met templates te maken waar ik later mee verder kon. Na de templates had ik veel verschillende kleuren en lay-out versies gemaakt, zodat we een groot assortiment hebben waaruit we kunnen kiezen om mee verder te werken. Wanneer we deze templates hadden kon ik ze zetten in de formaten 1x1, 4x5 en 9x16. Ik moest dan ook nog <span className="text-[#f05a28] font-bold">Motion Designs</span> maken van beide campagnes. Deze heb ik dan nog in After Effects gemaakt in de verschillende formaten en ook telkens twee versies.
+              Ik begon met templates te maken in meerdere kleuren en lay-outs, waarna ik ze opmmaakte in de formaten <span className="text-[#f05a28] font-bold">1x1, 4x5 en 9x16</span>. Daarna maakte ik <span className="text-[#f05a28] font-bold">Motion Designs</span> in After Effects in dezelfde formaten — telkens twee versies.
             </p>
             <p>
-              Toen alle templates waren opgemaakt had ik ze in <span className="text-[#f05a28] font-bold">Figma Buzz</span> gezet en heb ik ook aan de collega's van dit project een korte presentatie gegeven over hoe je hiermee moet werken, want het is nog redelijk nieuw dat ze wel willen implementeren in <span className="text-[#f05a28] font-bold">JUNE20</span>. In Figma Buzz kunnen ze dan alle templates makkelijk en snel van tekst, foto en van plaats veranderen.
+              Na afloop gaf ik de templates in via <span className="text-[#f05a28] font-bold">Figma Buzz</span> en presenteerde ik een korte uitleg aan de collega's zodat zij de templates zelf snel kunnen aanpassen.
             </p>
             <p>
-              We hadden weer een meeting met de klant, waarbij ze dan wat feedback gaf op alle designs. De gekozen templates waren allemaal in het <span className="text-[#f05a28] font-bold">oranje</span>, maar de klant wou dat er toch wat variaties op kom van verschillende kleuren. En wanneer ik dit had gedaan was het project afgerond.
+              Na feedback van de klant werden ook kleurvariaties toegevoegd, waarna het project was afgerond.
             </p>
           </div>
         </div>
 
-        {/* Top Right - Motion Designs Carousel */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col h-full">
-          <h3 className="text-2xl font-display font-bold text-white mb-6">Motion Designs:</h3>
-          <div className="flex justify-center gap-4 mb-6">
-            <span className="text-xs font-bold text-white cursor-pointer">Verpleegkunde</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Vroedkunde</span>
-          </div>
-          <div className="relative bg-[#2d1b54] rounded-xl flex-grow flex items-center justify-center p-4">
-             {/* Placeholder for Motion Graphic */}
-             <div className="w-full max-w-[220px] aspect-[4/5] bg-gradient-to-br from-orange-400 to-red-500 rounded-lg shadow-lg flex flex-col justify-center items-center relative overflow-hidden p-6">
-                <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=400&q=80')] bg-cover bg-center"></div>
-                <h4 className="text-white font-display font-bold text-2xl text-center leading-tight mb-4 z-10">Gezocht:<br/>redders<br/>in nood.</h4>
-                <Play size={40} className="text-white z-10" />
-                <div className="absolute bottom-4 right-4 bg-[#f05a28] px-2 py-1 rounded text-[8px] font-bold text-white z-10">ZAT 25 APRIL</div>
-             </div>
-
-             <button className="absolute left-4 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-20">
-               <ArrowLeft size={14} />
-             </button>
-             <button className="absolute right-4 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-20">
-               <ArrowRight size={14} />
-             </button>
-          </div>
-        </div>
-
-        {/* Bottom Left - Verpleegkunde */}
+        {/* Motion Designs */}
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
-          <h3 className="text-2xl font-display font-bold text-white mb-6">Verpleegkunde posts:</h3>
-          <div className="flex justify-center gap-4 mb-6">
-            <span className="text-xs font-bold text-white cursor-pointer">Statisch</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Carrousel</span>
-          </div>
-          <div className="relative bg-[#2d1b54] rounded-xl flex-grow flex items-center justify-center p-4">
-             {/* Static Post Placeholder */}
-             <div className="w-full max-w-[220px] aspect-[4/5] rounded-lg overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&w=400&q=80" className="w-full h-full object-cover" alt="Verpleegkunde" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                <div className="absolute bottom-6 left-4 right-4">
-                   <h4 className="text-white font-display font-bold text-xl leading-tight mb-2">Draag ook<br/>zorg voor je<br/>eigen carrière.</h4>
-                   <div className="flex justify-between items-end">
-                      <p className="text-white/80 text-[8px] max-w-[100px]">Word verpleegkundige. Kom naar onze infodag op</p>
-                      <div className="bg-[#f05a28] px-2 py-1 rounded text-[8px] font-bold text-white">ZAT 25 APRIL</div>
-                   </div>
-                </div>
-             </div>
-             
-             <button className="absolute left-4 w-6 h-6 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-20">
-               <ArrowLeft size={12} />
-             </button>
-             <button className="absolute right-4 w-6 h-6 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-20">
-               <ArrowRight size={12} />
-             </button>
-          </div>
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Motion Designs:</h3>
+          <VideoSection />
         </div>
 
-        {/* Bottom Right - Vroedkunde */}
+        {/* Verpleegkunde posts */}
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
-          <h3 className="text-2xl font-display font-bold text-white mb-6">Vroedkunde posts:</h3>
-          <div className="flex justify-center gap-4 mb-6">
-            <span className="text-xs font-bold text-white cursor-pointer">Statisch</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Carrousel</span>
-          </div>
-          <div className="relative bg-[#2d1b54] rounded-xl flex-grow flex items-center justify-center p-4">
-             {/* Static Post Placeholder */}
-             <div className="w-full max-w-[220px] aspect-[4/5] rounded-lg overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=400&q=80" className="w-full h-full object-cover" alt="Vroedkunde" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                <div className="absolute bottom-6 left-4 right-4">
-                   <h4 className="text-white font-display font-bold text-lg leading-tight mb-2">Deel het eerste<br/>geluk van ouders,<br/>word vroedvrouw.</h4>
-                   <div className="flex justify-between items-end">
-                      <p className="text-white/80 text-[8px] max-w-[100px]">Studeer vroedkunde bij Thomas More. Infodag op 20 juni.</p>
-                      <div className="bg-[#f05a28] px-2 py-1 rounded text-[8px] font-bold text-white">ZAT 20 JUNI</div>
-                   </div>
-                </div>
-             </div>
-             
-             <button className="absolute left-4 w-6 h-6 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-20">
-               <ArrowLeft size={12} />
-             </button>
-             <button className="absolute right-4 w-6 h-6 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-20">
-               <ArrowRight size={12} />
-             </button>
-          </div>
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Verpleegkunde posts:</h3>
+          <TabCarousel tabs={verpleegkundeTabs} aspectRatio="4/5" />
+        </div>
+
+        {/* Vroedkunde posts */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Vroedkunde posts:</h3>
+          <TabCarousel tabs={vroedkundeTabs} aspectRatio="4/5" />
         </div>
 
       </div>

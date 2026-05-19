@@ -24,6 +24,12 @@ html {
     background-color: #0e0d29;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+
+  @media (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
 }
 
 .glass {
@@ -41,4 +47,13 @@ html {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadein {
+  animation: fadein 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) both;
 }

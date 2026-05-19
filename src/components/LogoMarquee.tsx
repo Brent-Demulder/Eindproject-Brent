@@ -2,27 +2,27 @@ const logos = [
   "Curendis", "GRP", "Stromer", "June20", "Thomas More", "Oscare"
 ];
 
-// Duplicate the logos so the seamless loop can translate exactly -50%
-const allLogos = [...logos, ...logos];
-
 export default function LogoMarquee() {
   return (
-    <section className="py-10 border-y border-white/5 overflow-hidden select-none" style={{ backgroundColor: '#0e0d29' }}>
+    <section className="py-10 border-y border-white/5 overflow-hidden select-none bg-[#0e0d29]">
       <style>{`
-        @keyframes marquee-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-inner {
+          display: flex;
+          width: max-content;
+          animation: marquee 25s linear infinite;
+          will-change: transform;
         }
       `}</style>
 
-      <div
-        className="flex gap-16 whitespace-nowrap"
-        style={{ animation: 'marquee-scroll 20s linear infinite', width: 'max-content' }}
-      >
-        {allLogos.map((logo, i) => (
+      <div className="marquee-inner">
+        {[...logos, ...logos].map((logo, i) => (
           <span
             key={i}
-            className="text-2xl md:text-3xl font-display font-bold tracking-tight text-white/20 hover:text-white/60 transition-colors cursor-default"
+            className="shrink-0 px-10 text-4xl md:text-5xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white/20 to-white/20 hover:from-[#9b6cff] hover:to-[#ff66c4] transition-all duration-300 cursor-default"
           >
             {logo}
           </span>

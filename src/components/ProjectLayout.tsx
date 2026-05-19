@@ -1,24 +1,30 @@
-import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ProjectLayoutProps {
   children: React.ReactNode;
   currentProject?: string;
+  type?: "project" | "opdracht";
 }
 
-const allProjects = [
+const stageProjects = [
   { name: "Curendis", path: "/project/curendis" },
   { name: "Gedeon Richter Pro", path: "/project/gedeon-richter-pro" },
-  { name: "Stromer", path: "/project/stromer" },
   { name: "JUNE20", path: "/project/june20" },
   { name: "Oscare", path: "/project/oscare" },
   { name: "Thomas More", path: "/project/thomas-more" },
+  { name: "Stromer", path: "/project/stromer" },
 ];
 
-export default function ProjectLayout({ children, currentProject }: ProjectLayoutProps) {
-  // Filter out the current project from the "Bekijk ook" list
-  const otherProjects = allProjects.filter(p => p.name !== currentProject);
+const schoolProjects = [
+  { name: "Vlog", path: "/opdracht/vlog" },
+  { name: "Case", path: "/opdracht/case" },
+  { name: "Poster", path: "/opdracht/poster" },
+];
+
+export default function ProjectLayout({ children, currentProject, type = "project" }: ProjectLayoutProps) {
+  const list = type === "opdracht" ? schoolProjects : stageProjects;
+  const otherProjects = list.filter(p => p.name !== currentProject);
 
   return (
     <div className="min-h-screen pt-32 pb-24 px-6">
@@ -33,11 +39,7 @@ export default function ProjectLayout({ children, currentProject }: ProjectLayou
         </Link>
 
         {/* Main Project Container */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-[#29175c] rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5"
-        >
+        <div className="relative z-10 bg-[#29175c] rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5 animate-fadein">
           {/* Project Content */}
           {children}
 
@@ -58,7 +60,7 @@ export default function ProjectLayout({ children, currentProject }: ProjectLayou
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

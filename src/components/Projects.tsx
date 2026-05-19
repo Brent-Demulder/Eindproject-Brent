@@ -1,16 +1,150 @@
-import { motion } from "motion/react";
-import { ArrowUpRight, TrendingUp, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
+
+const ease = [0.25, 0.1, 0.25, 1] as const;
+
+function VlogCard({ onClick }: { onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-white/20 cursor-pointer"
+    >
+      <div className="h-52 relative overflow-hidden bg-black/40">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f05a28]/50 via-[#f05a28]/20 to-transparent" />
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-56 h-56 rounded-full blur-3xl bg-[#f05a28]/25 transition-opacity duration-500 group-hover:opacity-150" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="absolute bottom-5 left-6 right-16">
+          <p className="text-white font-display font-bold text-lg leading-tight tracking-tight drop-shadow-lg">A day in the life of JUNE20</p>
+        </div>
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/10 bg-black/30 flex items-center justify-center">
+          <ArrowUpRight size={14} className="text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </div>
+      </div>
+      <div className="flex flex-col flex-grow p-6 gap-3">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#f05a28]">Vlog</span>
+          <span className="text-[10px] text-white/20 font-bold">01</span>
+        </div>
+        <h3 className="text-xl font-display font-bold tracking-tight text-white leading-snug">
+          A day in the life of JUNE20
+        </h3>
+        <p className="text-xs text-white/50 leading-relaxed flex-grow">
+          Een inkijk in een werkdag op het kantoor van JUNE20 — van briefing tot aflevering.
+        </p>
+        <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+          {["Video", "Editing"].map(tag => (
+            <span key={tag} className="text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-full border text-[#f05a28cc] border-[#f05a2830] bg-[#f05a2810]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CaseCard({ onClick }: { onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-white/20 cursor-pointer"
+    >
+      <div className="h-52 relative overflow-hidden bg-black/40">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#9b6cff]/50 via-[#9b6cff]/20 to-transparent" />
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-56 h-56 rounded-full blur-3xl bg-[#9b6cff]/25 transition-opacity duration-500 group-hover:opacity-150" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="absolute bottom-5 left-6 right-16">
+          <p className="text-white font-display font-bold text-lg leading-tight tracking-tight drop-shadow-lg">Case Study — Stromer</p>
+        </div>
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/10 bg-black/30 flex items-center justify-center">
+          <ArrowUpRight size={14} className="text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </div>
+      </div>
+      <div className="flex flex-col flex-grow p-6 gap-3">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#9b6cff]">Case Study</span>
+          <span className="text-[10px] text-white/20 font-bold">02</span>
+        </div>
+        <h3 className="text-xl font-display font-bold tracking-tight text-white leading-snug">
+          Case Study — Stromer
+        </h3>
+        <p className="text-xs text-white/50 leading-relaxed flex-grow">
+          Een diepgaande analyse van het Stromer project — van briefing en aanpak tot eindresultaat.
+        </p>
+        <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+          {["MP4", "Case"].map(tag => (
+            <span key={tag} className="text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-full border text-[#9b6cffcc] border-[#9b6cff30] bg-[#9b6cff10]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PosterCard({ onClick }: { onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 hover:border-white/20 cursor-pointer"
+    >
+      <div className="h-52 relative overflow-hidden bg-black/40">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#ff66c4]/50 via-[#ff66c4]/20 to-transparent" />
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-56 h-56 rounded-full blur-3xl bg-[#ff66c4]/25 transition-opacity duration-500 group-hover:opacity-150" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="absolute bottom-5 left-6 right-16">
+          <p className="text-white font-display font-bold text-lg leading-tight tracking-tight drop-shadow-lg">Beursposter JUNE20</p>
+        </div>
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/10 bg-black/30 flex items-center justify-center">
+          <ArrowUpRight size={14} className="text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </div>
+      </div>
+      <div className="flex flex-col flex-grow p-6 gap-3">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#ff66c4]">Poster</span>
+          <span className="text-[10px] text-white/20 font-bold">03</span>
+        </div>
+        <h3 className="text-xl font-display font-bold tracking-tight text-white leading-snug">
+          Beursposter JUNE20
+        </h3>
+        <p className="text-xs text-white/50 leading-relaxed flex-grow">
+          Poster in de huisstijl van JUNE20 om op een beurs medeleerlingen te overtuigen om hier op stage te komen.
+        </p>
+        <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+          {["Print", "Illustratie"].map(tag => (
+            <span key={tag} className="text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-full border text-[#ff66c4cc] border-[#ff66c430] bg-[#ff66c410]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Projects() {
   const navigate = useNavigate();
+
+  const cards = [
+    <VlogCard key="vlog" onClick={() => navigate("/opdracht/vlog")} />,
+    <CaseCard key="case" onClick={() => navigate("/opdracht/case")} />,
+    <PosterCard key="poster" onClick={() => navigate("/opdracht/poster")} />,
+  ];
 
   return (
     <section id="assignments" className="py-24 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
-        {/* Section Intro — Two Column */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+        {/* Section heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16"
+        >
           <div>
             <span className="text-[#9b6cff] font-bold uppercase tracking-widest text-[10px] mb-4 block">
               EINDOPDRACHT GRADUAAT
@@ -24,90 +158,27 @@ export default function Projects() {
             </h2>
           </div>
           <div className="flex items-end">
-            <p className="text-white/60 text-xs md:text-sm max-w-sm">
-              Hier vind je mijn drie eindopdrachten van het Graduaat Digitale Vormgeving 2025-2026.
+            <p className="text-white/60 text-sm max-w-sm">
+              Drie eindopdrachten van het Graduaat Digitale Vormgeving 2025-2026.
             </p>
           </div>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {cards.map((card, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, delay: i * 0.1, ease }}
+            >
+              {card}
+            </motion.div>
+          ))}
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Featured Card — June20 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            onClick={() => navigate('/project/june20')}
-            className="lg:col-span-2 cursor-pointer group relative overflow-hidden rounded-[2rem] bg-[#2b1b4d] p-8 md:p-12 shadow-xl min-h-[420px] flex flex-col justify-between transition-all duration-500 hover:bg-[#34225e]"
-          >
-            {/* Header */}
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[#9b6cff] font-bold uppercase tracking-widest text-[8px]">PROJECT 01</span>
-                <motion.div whileHover={{ rotate: 45 }} className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                  <ArrowUpRight size={14} className="text-white" />
-                </motion.div>
-              </div>
-              <h3 className="text-3xl md:text-5xl font-display font-bold tracking-tighter leading-tight text-white mb-4">
-                A day in the
-                <br />
-                life of <span className="bg-gradient-to-r from-[#9b6cff] to-[#ff66c4] bg-clip-text text-transparent italic">JUNE20</span>
-              </h3>
-              <p className="text-white/60 text-xs max-w-xs">
-                Volg een typische werkdag mee op het kantoor van JUNE20.
-              </p>
-            </div>
-
-            {/* Image Container Placeholder to match screenshot */}
-            <div className="relative z-10 mt-8 rounded-2xl overflow-hidden h-40 bg-gradient-to-b from-white/20 to-[#1e1e1e] flex items-end p-4">
-              <div className="flex gap-2">
-                <div className="px-3 py-1 rounded-full bg-black/40 text-[8px] font-bold uppercase tracking-wider text-white border border-white/10">Productie</div>
-                <div className="px-3 py-1 rounded-full bg-black/40 text-[8px] font-bold uppercase tracking-wider text-white border border-white/10">Cultuur</div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column — Stacked Cards */}
-          <div className="flex flex-col gap-6">
-            {/* Card — Curendis */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              onClick={() => navigate('/project/curendis')}
-              className="group cursor-pointer relative rounded-[2rem] bg-[#1a1c29] p-8 shadow-xl flex-1 flex flex-col justify-center transition-all duration-500 hover:bg-[#222536]"
-            >
-              <div className="w-8 h-8 rounded-full bg-[#2a2c40] flex items-center justify-center mb-6">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b6cff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
-              </div>
-              <span className="text-[#9b6cff] font-bold uppercase tracking-widest text-[8px] mb-2 block">PROJECT 02</span>
-              <h3 className="text-2xl font-display font-bold tracking-tighter text-white mb-2">Curendis</h3>
-              <p className="text-white/60 text-[10px] leading-relaxed">
-                Bekijk de reis van een UGO stolsels via 3D visuals.
-              </p>
-            </motion.div>
-
-            {/* Card — Poster Design */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="group cursor-pointer relative rounded-[2rem] bg-[#1e1726] p-8 shadow-xl flex-1 flex flex-col justify-center transition-all duration-500 hover:bg-[#281e33]"
-            >
-              <div className="w-8 h-8 rounded-full bg-[#30253d] flex items-center justify-center mb-6">
-                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff66c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-              </div>
-              <span className="text-[#9b6cff] font-bold uppercase tracking-widest text-[8px] mb-2 block">PROJECT 03</span>
-              <h3 className="text-2xl font-display font-bold tracking-tighter text-white mb-2">Poster Design</h3>
-              <p className="text-white/60 text-[10px] leading-relaxed">
-                Ontdek mijn grafisch ontworpen poster voor deze organisatie.
-              </p>
-            </motion.div>
-          </div>
-        </div>
       </div>
     </section>
   );

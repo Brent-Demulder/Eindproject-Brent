@@ -2,50 +2,23 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import curendisImg from "../assets/reveals/curendis.png";
-import grpImg from "../assets/reveals/grp.png";
-import stromerImg from "../assets/reveals/stromer.png";
-import june20Img from "../assets/reveals/june20.png";
-import thomasMoreImg from "../assets/reveals/thomasmore.png";
+import curendisImg from "../assets/banner_designs_pagina's/Curendis_Banner_Beeld.png";
+import grpImg from "../assets/banner_designs_pagina's/GRP_Banner_Beeld.png";
+import june20Img from "../assets/banner_designs_pagina's/JUNE20_Banner_Beeld.png";
+import thomasMoreImg from "../assets/banner_designs_pagina's/THMO_Banner_Beeld.png";
+import stromerImg from "../assets/banner_designs_pagina's/Stromer_Banner_Beeld.png";
+import oscareImg from "../assets/banner_designs_pagina's/Oscare_Banner_Beeld.png";
 
 const reveals = [
-  {
-    title: "Curendis",
-    image: curendisImg,
-    label: "Chiropractie",
-    path: "/project/curendis"
-  },
-  {
-    title: "Gedeon Richter Pro",
-    image: grpImg,
-    label: "Medische expertise",
-    path: "/project/gedeon-richter-pro"
-  },
-  {
-    title: "Stromer",
-    image: stromerImg,
-    label: "Spoed pedelecs",
-    path: "/project/stromer"
-  },
-  {
-    title: "June20",
-    image: june20Img,
-    label: "Creator agency",
-    path: "/project/june20"
-  },
-  {
-    title: "Thomas More",
-    image: thomasMoreImg,
-    label: "Onderwijs",
-    path: "/project/thomas-more"
-  },
-  {
-    title: "Oscare",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1400",
-    label: "Zorginstelling",
-    path: "/project/oscare"
-  },
+  { title: "Curendis",          image: curendisImg,   label: "Chiropractie",       path: "/project/curendis" },
+  { title: "Gedeon Richter Pro", image: grpImg,        label: "Medische expertise", path: "/project/gedeon-richter-pro" },
+  { title: "June20",            image: june20Img,     label: "Creator agency",     path: "/project/june20" },
+  { title: "Thomas More",       image: thomasMoreImg, label: "Onderwijs",          path: "/project/thomas-more" },
+  { title: "Oscare",            image: oscareImg,     label: "Zorginstelling",     path: "/project/oscare" },
+  { title: "Stromer",           image: stromerImg,    label: "Spoed pedelecs",     path: "/project/stromer" },
 ];
+
+const ease = [0.25, 0.1, 0.25, 1] as const;
 
 export default function HoverReveal() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -64,29 +37,26 @@ export default function HoverReveal() {
               transition={{ duration: 0.5 }}
               className="absolute inset-0 z-0"
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-full object-cover"
-              />
+              <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-[#0e0d29]/60" />
             </motion.div>
           )}
         </AnimatePresence>
       ))}
 
-      {/* Default background */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-500 z-0 ${
-          hoveredIdx !== null ? "opacity-0" : "opacity-100"
-        }`}
-        style={{ backgroundColor: 'transparent' }}
-      />
+      <div className={`absolute inset-0 transition-opacity duration-500 z-0 ${hoveredIdx !== null ? "opacity-0" : "opacity-100"}`} />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-0">
+
         {/* Section heading */}
-        <div className="mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-16"
+        >
           <span className="text-[#9b6cff] font-bold uppercase tracking-widest text-[10px] mb-4 block">
             PROJECTEN TIJDENS MIJN STAGE
           </span>
@@ -96,25 +66,45 @@ export default function HoverReveal() {
               projecten.
             </span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* List */}
-        <div className="space-y-0 border-t border-white/10 pt-4">
+        {/* Mobile cards */}
+        <div className="grid grid-cols-2 gap-4 mb-8 md:hidden">
           {reveals.map((item, idx) => (
             <div
               key={idx}
               onClick={() => navigate(item.path)}
+              className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-video"
+            >
+              <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-active:scale-95" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-white font-display font-bold text-sm leading-tight">{item.title}</p>
+                <p className="text-white/50 text-[10px]">{item.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop list */}
+        <div className="hidden md:block space-y-0 border-t border-white/10 pt-4">
+          {reveals.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: idx * 0.07, ease }}
+              onClick={() => navigate(item.path)}
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
               className={`group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/5 cursor-pointer transition-all duration-300 ${
-                hoveredIdx !== null && hoveredIdx !== idx
-                  ? "opacity-30"
-                  : "opacity-100"
+                hoveredIdx !== null && hoveredIdx !== idx ? "opacity-30" : "opacity-100"
               }`}
             >
               <div className="flex items-center gap-6">
                 <span className="text-[10px] text-white/30 font-bold">
-                  {String(idx + 1).padStart(2, '0')}
+                  {String(idx + 1).padStart(2, "0")}
                 </span>
                 <h3
                   className={`text-3xl md:text-5xl font-display font-bold tracking-tight transition-all duration-300 ${
@@ -127,16 +117,15 @@ export default function HoverReveal() {
                 </h3>
               </div>
               <div className="flex items-center gap-6 mt-4 md:mt-0">
-                <span className="text-[10px] text-white/40">
-                  {item.label}
-                </span>
+                <span className="text-[10px] text-white/40">{item.label}</span>
                 <span className="text-white/20 text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">
                   VERKENNEN →
                 </span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

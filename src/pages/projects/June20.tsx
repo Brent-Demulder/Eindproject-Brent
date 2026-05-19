@@ -1,83 +1,136 @@
+import { useState, useEffect } from "react";
 import ProjectLayout from "../../components/ProjectLayout";
-import june20Img from "../../assets/reveals/june20.png";
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
+import TabCarousel from "../../components/TabCarousel";
+
+// Hero
+import heroBanner from "../../assets/banner_designs_pagina's/JUNE20_Banner_text.png";
+
+// Headers
+import header1 from "../../assets/WEBSITE BESTANDEN/JUNE20/Headers/Wireframe - 1.png";
+import header4 from "../../assets/WEBSITE BESTANDEN/JUNE20/Headers/Wireframe - 4.png";
+import header7 from "../../assets/WEBSITE BESTANDEN/JUNE20/Headers/Wireframe - 7.png";
+
+// Footers
+import footer1 from "../../assets/WEBSITE BESTANDEN/JUNE20/Footer/Footer.png";
+import footer2 from "../../assets/WEBSITE BESTANDEN/JUNE20/Footer/Footer 2.png";
+import footer3 from "../../assets/WEBSITE BESTANDEN/JUNE20/Footer/Footer 3.png";
+import footer4 from "../../assets/WEBSITE BESTANDEN/JUNE20/Footer/Footer 4.png";
+import footer5 from "../../assets/WEBSITE BESTANDEN/JUNE20/Footer/Footer 5.png";
+
+// Motion Vacature videos
+import anim1 from "../../assets/WEBSITE BESTANDEN/JUNE20/Motion Vacature/BDA_ANIM_1.mp4";
+import anim2 from "../../assets/WEBSITE BESTANDEN/JUNE20/Motion Vacature/BDA_ANIM_2.mp4";
+import anim3 from "../../assets/WEBSITE BESTANDEN/JUNE20/Motion Vacature/BDA_ANIM_3.mp4";
+import vacature4x5 from "../../assets/WEBSITE BESTANDEN/JUNE20/Motion Vacature/Vacature_BD_4x5.mp4";
+
+const headerTabs = [
+  { label: "Headers", images: [header1, header4, header7] },
+];
+
+const footerTabs = [
+  { label: "Footers", images: [footer1, footer2, footer3, footer4, footer5] },
+];
+
+const motionVideos = [
+  { label: "BDA Anim 1",   src: anim1 },
+  { label: "BDA Anim 2",   src: anim2 },
+  { label: "BDA Anim 3",   src: anim3 },
+  { label: "Vacature 4x5", src: vacature4x5 },
+];
+
+function VideoSection() {
+  const [active, setActive] = useState(0);
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex flex-wrap gap-4 mb-6 justify-center">
+        {motionVideos.map((v, i) => (
+          <button
+            key={v.label}
+            onClick={() => setActive(i)}
+            className={`text-xs font-bold transition-colors ${i === active ? "text-white" : "text-white/40 hover:text-white/70"}`}
+          >
+            {v.label}
+          </button>
+        ))}
+      </div>
+      <div className="relative bg-[#1e1440] rounded-xl flex-grow flex items-center justify-center p-4 min-h-[280px]">
+        <video
+          key={motionVideos[active].src}
+          src={motionVideos[active].src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          className="max-h-[360px] w-auto rounded-lg shadow-lg object-contain"
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function June20() {
+  useEffect(() => { document.title = "JUNE20 — Brent Demulder"; }, []);
   return (
     <ProjectLayout currentProject="JUNE20">
-      {/* Header Info */}
+
+      {/* Header */}
       <div className="mb-10">
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-accent mb-2 block">
-          Eindproject
+        <span className="text-[10px] font-bold uppercase tracking-widest text-[#f05a28] mb-2 block bg-[#f05a28]/20 w-fit px-3 py-1 rounded-full border border-[#f05a28]/30">
+          STAGEPROJECT
         </span>
-        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 uppercase">
+        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#f05a28] to-[#ff9a6c]">
           JUNE20
         </h1>
-        <p className="text-sm text-brand-secondary max-w-2xl">
-          Oscare is een bedrijf die zich focust op het verzorgen van brandwondes en littekenverzorging.
-          Mijn opdracht hierbij was om een campagne uit te schrijven voor de Escape Fire Truck!
-          {/* Note: Keeping the placeholder text from the screenshot */}
+        <p className="text-sm text-white/60 max-w-2xl">
+          Interne projecten voor JUNE20 zelf — motion designs voor een vacature, headers en footers voor de vernieuwde website.
         </p>
       </div>
 
-      {/* Hero Image */}
+      {/* Hero */}
       <div className="rounded-2xl overflow-hidden mb-12 h-64 md:h-96 relative">
-        <img 
-          src={june20Img} 
-          alt="JUNE20" 
-          className="w-full h-full object-cover"
-        />
+        <img loading="lazy" src={heroBanner} alt="JUNE20" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
       </div>
 
-      {/* Two Columns */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Left Column - Project Info */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+
+        {/* Project info */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
           <h3 className="text-2xl font-display font-bold text-white mb-4">Project:</h3>
-          <div className="text-sm text-brand-secondary space-y-4">
+          <div className="text-sm text-white/70 space-y-4 leading-relaxed">
             <p>
-              Voor <span className="text-white font-bold">JUNE20</span> zelf heb ik ook een paar opdrachten mogen doen. Waaronder een motion vacature voor een nieuwe brand designer. En dan ook nog <span className="text-red-500 font-bold">footers</span> en headers voor de vernieuwde website.
+              Voor <span className="text-[#f05a28] font-bold">JUNE20</span> zelf heb ik ook een paar opdrachten mogen doen. Waaronder een <span className="text-[#f05a28] font-bold">motion vacature</span> voor een nieuwe brand designer — vier animaties die de sfeer van het bureau neerzetten.
             </p>
             <p>
-              <span className="text-red-500 font-bold">JUNE20</span> is een Belgisch creatief bureau/<span className="text-red-500 font-bold">marketing</span>- en communicatiebureau. Ze bieden branding en merkidentiteit, creatieve campagnes en content, multichannel- en mediastrategie, en sociale mediastrategie.
+              Daarna heb ik ook <span className="text-[#f05a28] font-bold">headers en footers</span> ontworpen voor de vernieuwde JUNE20 website. Verschillende varianten, zodat het team kon kiezen welke het best bij de nieuwe huisstijl aansluit.
             </p>
             <p>
-              Ze profileren zich als ondernemend: "<span className="text-red-500 font-bold">Small enough</span> to CARE and <span className="text-red-500 font-bold">big enough</span> to MAKE IT HAPPEN" en werken vaak langdurig met klanten.
+              JUNE20 is een Belgisch creatief bureau dat zich profileert als: <span className="text-[#f05a28] font-bold">"Small enough to CARE and big enough to MAKE IT HAPPEN."</span>
             </p>
           </div>
         </div>
 
-        {/* Right Column - Designs Carousel */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <h3 className="text-2xl font-display font-bold text-white mb-6">Designs:</h3>
-          
-          {/* Tabs */}
-          <div className="flex justify-center gap-4 mb-6">
-            <span className="text-xs font-bold text-white cursor-pointer">Motion Vacature</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Headers</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Footers</span>
-          </div>
-
-          {/* Carousel Image Area */}
-          <div className="relative bg-[#3b276b] rounded-xl h-64 md:h-80 flex items-center justify-center overflow-hidden p-4">
-             {/* Placeholder for Motion Graphic */}
-             <div className="w-full max-w-[200px] h-full bg-[#f05a41] rounded-lg shadow-lg flex flex-col items-center justify-center p-6 relative">
-                <span className="text-white/80 font-bold text-xs uppercase mb-2 text-center">Hiring a<br/>BRAND<br/>DESIGNER</span>
-                <Play size={40} className="text-white/80 mt-2" />
-                <div className="absolute top-2 right-2 rotate-12">
-                   <span className="text-white/50 font-bold text-[8px] bg-white/20 px-1 py-0.5 rounded">APPLY</span>
-                </div>
-             </div>
-
-             {/* Carousel Controls */}
-             <button className="absolute left-4 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors">
-               <ArrowLeft size={14} />
-             </button>
-             <button className="absolute right-4 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors">
-               <ArrowRight size={14} />
-             </button>
-          </div>
+        {/* Motion Vacature */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Motion Vacature:</h3>
+          <VideoSection />
         </div>
+
+        {/* Headers */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Headers:</h3>
+          <TabCarousel tabs={headerTabs} aspectRatio="auto" />
+        </div>
+
+        {/* Footers */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Footers:</h3>
+          <TabCarousel tabs={footerTabs} aspectRatio="auto" />
+        </div>
+
       </div>
     </ProjectLayout>
   );

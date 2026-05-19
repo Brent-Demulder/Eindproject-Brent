@@ -1,165 +1,155 @@
+import { useEffect } from "react";
+import { FileText, ExternalLink } from "lucide-react";
 import ProjectLayout from "../../components/ProjectLayout";
-import { ArrowLeft, ArrowRight, FileText } from "lucide-react";
+import TabCarousel from "../../components/TabCarousel";
+
+// Hero
+import heroBanner from "../../assets/banner_designs_pagina's/Oscare_Banner_text.png";
+
+// Banners
+import bannerA from "../../assets/WEBSITE BESTANDEN/Oscare/Banners/Banner A.png";
+import bannerB1 from "../../assets/WEBSITE BESTANDEN/Oscare/Banners/Banner B.1.png";
+import bannerB2 from "../../assets/WEBSITE BESTANDEN/Oscare/Banners/Banner B.2.png";
+
+// Posts — Kamp
+import kamp1 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Leiding_Kamp/4x5_Oscare_Statisch_1.png";
+import kamp2 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Leiding_Kamp/4x5_Oscare_Statisch_2.png";
+import kamp3 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Leiding_Kamp/4x5_Oscare_Statisch_3.png";
+import kamp4 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Leiding_Kamp/4x5_Oscare_Statisch_4.png";
+
+// Posts — BBQ
+import bbq1 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_BBQ/4x5_Oscare_Statisch_1.png";
+import bbq2 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_BBQ/4x5_Oscare_Statisch_2.png";
+import bbq3 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_BBQ/4x5_Oscare_Statisch_3.png";
+import bbq4 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_BBQ/4x5_Oscare_Statisch_4.png";
+
+// Posts — Nieuwjaar
+import nieuw1 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_Nieuwjaar/4x5_Oscare_Statisch_1.png";
+import nieuw2 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_Nieuwjaar/4x5_Oscare_Statisch_2.png";
+import nieuw3 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_Nieuwjaar/4x5_Oscare_Statisch_3.png";
+import nieuw4 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_Ouders_Nieuwjaar/4x5_Oscare_Statisch_4.png";
+
+// Posts — School
+import school1 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_School/4x5_Oscare_Statisch_1.png";
+import school2 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_School/4x5_Oscare_Statisch_2.png";
+import school3 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_School/4x5_Oscare_Statisch_3.png";
+import school4 from "../../assets/WEBSITE BESTANDEN/Oscare/Posts/DG_School/4x5_Oscare_Statisch_4.png";
+
+// PDFs (as links)
+import landingLicht from "../../assets/WEBSITE BESTANDEN/Oscare/landingspagina/Landingspagina_Licht.pdf";
+import landingDonker from "../../assets/WEBSITE BESTANDEN/Oscare/landingspagina/Landingspagina_Donker.pdf";
+import rapport from "../../assets/WEBSITE BESTANDEN/Oscare/Rapport/Oscare_Rapport.pdf";
+
+const postTabs = [
+  { label: "Kamp",     images: [kamp1, kamp2, kamp3, kamp4] },
+  { label: "BBQ",      images: [bbq1, bbq2, bbq3, bbq4] },
+  { label: "Nieuwjaar",images: [nieuw1, nieuw2, nieuw3, nieuw4] },
+  { label: "School",   images: [school1, school2, school3, school4] },
+];
+
+const bannerTabs = [
+  { label: "Banners", images: [bannerA, bannerB1, bannerB2] },
+];
 
 export default function Oscare() {
+  useEffect(() => { document.title = "Oscare — Brent Demulder"; }, []);
   return (
     <ProjectLayout currentProject="Oscare">
-      {/* Header Info */}
+
+      {/* Header */}
       <div className="mb-10">
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-accent mb-2 block">
-          Eindproject
+        <span className="text-[10px] font-bold uppercase tracking-widest text-[#8cc63f] mb-2 block bg-[#8cc63f]/20 w-fit px-3 py-1 rounded-full border border-[#8cc63f]/30">
+          STAGEPROJECT
         </span>
-        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-500">
+        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#8cc63f] to-[#00adef]">
           Oscare
         </h1>
-        <p className="text-sm text-brand-secondary max-w-2xl">
-          Oscare is een bedrijf die zich focust op het verzorgen van brandwondes en littekenverzorging. Mijn opdracht hierbij was om een campagne uit te schrijven voor de Escape Fire Truck!
+        <p className="text-sm text-white/60 max-w-2xl">
+          Oscare is een vzw die zich focust op het begeleiden van kinderen en jongeren. Mijn opdracht was een volledige digitale remarketingcampagne uitwerken voor de Fire Escape Room.
         </p>
       </div>
 
-      {/* Hero Image */}
-      <div className="rounded-2xl overflow-hidden mb-12 h-64 md:h-96 relative bg-[#1a0f35]">
-         <div className="absolute inset-0 flex">
-            {/* Left side text */}
-            <div className="w-1/2 p-8 md:p-12 flex flex-col justify-center">
-               <div className="flex items-center gap-2 mb-8">
-                  <span className="text-white font-display text-2xl font-bold tracking-tight">Oscare</span>
-                  <div className="flex gap-1">
-                     <div className="w-2 h-2 rounded-full bg-[#8cc63f]"></div>
-                     <div className="w-2 h-2 rounded-full bg-[#00adef]"></div>
-                     <div className="w-2 h-2 rounded-full bg-[#ec008c]"></div>
-                     <div className="w-2 h-2 rounded-full bg-[#fff200]"></div>
-                  </div>
-               </div>
-               <div className="w-12 h-0.5 bg-[#8cc63f] mb-4"></div>
-               <h2 className="text-3xl md:text-5xl font-display font-black text-[#e4f5d4] leading-tight mb-4 uppercase">
-                  DE ULTIEME<br/>
-                  VUURPROEF<br/>
-                  VOOR JOUW EVENT!
-               </h2>
-               <p className="text-white/80 text-xs max-w-xs">
-                  Kan jouw team tijdig ontsnappen? Test jullie brandveiligheid op een onvergetelijke, spannende manier met de mobiele <span className="text-[#8cc63f] font-bold">Fire Safety Truck</span> van Oscare.
-               </p>
-            </div>
-            {/* Right side abstract graphic placeholder */}
-            <div className="w-1/2 relative">
-               <div className="absolute inset-0 bg-gradient-to-l from-purple-600/40 to-transparent"></div>
-               <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full preserve-3d">
-                  <path d="M10,50 Q40,10 70,50 T90,90" fill="none" stroke="white" strokeWidth="0.5" className="opacity-50 blur-[1px] shadow-[0_0_15px_rgba(255,255,255,0.5)]"/>
-                  <path d="M10,60 Q40,20 70,60 T90,100" fill="none" stroke="#d8b4fe" strokeWidth="1" className="shadow-[0_0_20px_rgba(216,180,254,0.8)]"/>
-               </svg>
-            </div>
-         </div>
+      {/* Hero */}
+      <div className="rounded-2xl overflow-hidden mb-12 h-64 md:h-96 relative">
+        <img loading="lazy" src={heroBanner} alt="Oscare" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
       </div>
 
-      {/* Bento Grid */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* Top Left - Project Info */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col h-full">
+
+        {/* Project info */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
           <h3 className="text-2xl font-display font-bold text-white mb-4">Project:</h3>
-          <div className="text-[11px] text-brand-secondary space-y-4 flex-grow">
+          <div className="text-sm text-white/70 space-y-4 leading-relaxed">
             <p>
-              De bedoeling van deze opdracht was om mijn <span className="text-yellow-500 font-bold">marketing skills</span> uit te breiden. Ik moest dan onderzoek doen naar Oscare - die al een klant is van JUNE20 - en dan hier een campagne voor verzinnen en uitwerken. Ik heb gekozen voor de <span className="text-yellow-500 font-bold">Fire Escape Truck</span>. Het is een mobiele escape room die ze al hebben, maar nog niet veel reclame voor hebben gemaakt.
+              De bedoeling van deze opdracht was om mijn <span className="text-[#8cc63f] font-bold">marketing skills</span> uit te breiden. Ik moest onderzoek doen naar Oscare — al een klant van JUNE20 — en een campagne verzinnen en uitwerken. Ik koos voor de <span className="text-[#8cc63f] font-bold">Fire Escape Truck</span>: een mobiele escape room die ze al hebben maar waarvoor nog weinig reclame is gemaakt.
             </p>
             <p>
-              Ik heb hier dan wat research voor gedaan met behulp van <span className="text-yellow-500 font-bold">NotebookLM</span> en alles in een rapport gezet.
+              Ik heb research gedaan met behulp van <span className="text-[#8cc63f] font-bold">NotebookLM</span> en alles in een rapport gebundeld. Daarna maakte ik <span className="text-[#8cc63f] font-bold">banner designs</span> en <span className="text-[#8cc63f] font-bold">social media posts</span>, waarbij ik <span className="text-[#8cc63f] font-bold">A/B testing</span> gebruikte en vier verschillende thema's uitwerkte: Kamp, BBQ, Nieuwjaar en School.
             </p>
             <p>
-              Wanneer ik alles van informatie had uitgewerkt was ik van start gegaan met <span className="text-yellow-500 font-bold">banner designs</span> en <span className="text-yellow-500 font-bold">social media posts</span> te maken. Ik heb dan eerst een paar eerste designs uitgewerkt, voor dan later dit te gebruiken als basis voor mijn andere posts. Hierbij heb ik ook <span className="text-yellow-500 font-bold">A/B testing</span> gebruikt, waarbij ik heb nagedacht over specifieke tijden om deze campagne te lanceren. Ik heb dan vier verschillende thema's gevonden en hier vier verschillende versies telkens voor gemaakt. Die kan je hier rechts terug vinden.
-            </p>
-            <p>
-              Als laatste heb ik ook nog een <span className="text-yellow-500 font-bold">landingspagina</span> gemaakt - waarbij je een formulier kan invullen om de truck te huren.
-            </p>
-            <p>
-              De bedoeling van de campagne is om kinderen de gevaren van brand aan te leren, en snel uit gevaarlijke situaties te geraken voor het te laat is.
+              Als laatste maakte ik een <span className="text-[#8cc63f] font-bold">landingspagina</span> met een formulier om de truck te huren — beschikbaar in een licht en donker thema.
             </p>
           </div>
         </div>
 
-        {/* Top Right - Posts Carousel */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col h-full">
-          <h3 className="text-2xl font-display font-bold text-white mb-6">Posts:</h3>
-          <div className="flex justify-center gap-4 mb-6">
-            <span className="text-xs font-bold text-white cursor-pointer">Kamp</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">BBQ</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Nieuwjaar</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">School</span>
-          </div>
-          <div className="relative bg-[#2d1b54] rounded-xl flex-grow flex items-center justify-center p-4 overflow-hidden">
-             {/* Placeholder for Post Image */}
-             <div className="w-full max-w-[220px] aspect-[4/5] bg-slate-800 rounded-lg overflow-hidden relative border border-white/10">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80 z-10"></div>
-                <div className="absolute inset-x-0 top-6 z-20 text-center px-4">
-                   <h4 className="text-white font-display font-black italic text-lg leading-tight uppercase">GEEN ZOMERKAMP<br/>ZONDER KAMPVUUR!</h4>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="w-16 h-16 bg-orange-500/50 rounded-full blur-xl"></div>
-                </div>
-             </div>
-
-             <button className="absolute left-2 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-30">
-               <ArrowLeft size={14} />
-             </button>
-             <button className="absolute right-2 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors z-30">
-               <ArrowRight size={14} />
-             </button>
-             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
-                <div className="w-1 h-1 rounded-full bg-brand-accent"></div>
-                <div className="w-1 h-1 rounded-full bg-white/30"></div>
-                <div className="w-1 h-1 rounded-full bg-white/30"></div>
-                <div className="w-1 h-1 rounded-full bg-white/30"></div>
-             </div>
-          </div>
+        {/* Posts carousel */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Posts:</h3>
+          <TabCarousel tabs={postTabs} aspectRatio="4/5" />
         </div>
 
-        {/* Bottom Left - Landingspagina */}
+        {/* Landingspagina */}
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
           <h3 className="text-2xl font-display font-bold text-white mb-6">Landingspagina:</h3>
-          <div className="flex gap-4 h-64 md:h-80">
-             {/* Placeholder for tall landing pages */}
-             <div className="w-1/2 h-full bg-[#1a2b4c] rounded-lg overflow-hidden border border-white/10 p-2 flex flex-col gap-2">
-                <div className="h-16 bg-blue-400/20 rounded"></div>
-                <div className="grid grid-cols-4 gap-1">
-                   <div className="h-8 bg-blue-400/40 rounded"></div>
-                   <div className="h-8 bg-red-400/40 rounded"></div>
-                   <div className="h-8 bg-yellow-400/40 rounded"></div>
-                   <div className="h-8 bg-green-400/40 rounded"></div>
-                </div>
-                <div className="flex-grow bg-white/5 rounded"></div>
-                <div className="h-10 bg-white/10 rounded"></div>
-             </div>
-             <div className="w-1/2 h-full bg-[#1a2b4c] rounded-lg overflow-hidden border border-white/10 p-2 flex flex-col gap-2">
-                <div className="h-16 bg-blue-400/20 rounded"></div>
-                <div className="grid grid-cols-4 gap-1">
-                   <div className="h-8 bg-blue-400/40 rounded"></div>
-                   <div className="h-8 bg-red-400/40 rounded"></div>
-                   <div className="h-8 bg-yellow-400/40 rounded"></div>
-                   <div className="h-8 bg-green-400/40 rounded"></div>
-                </div>
-                <div className="h-10 bg-white/10 rounded mt-4"></div>
-                <div className="flex-grow bg-white/5 rounded"></div>
-             </div>
+          <div className="flex gap-4">
+            <a
+              href={landingLicht}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex flex-col items-center gap-3 p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+            >
+              <FileText size={40} className="text-[#8cc63f]/60 group-hover:text-[#8cc63f] transition-colors" />
+              <span className="text-sm font-bold text-white/70 group-hover:text-white transition-colors text-center">Licht thema</span>
+              <ExternalLink size={12} className="text-white/30" />
+            </a>
+            <a
+              href={landingDonker}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex flex-col items-center gap-3 p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+            >
+              <FileText size={40} className="text-[#8cc63f]/60 group-hover:text-[#8cc63f] transition-colors" />
+              <span className="text-sm font-bold text-white/70 group-hover:text-white transition-colors text-center">Donker thema</span>
+              <ExternalLink size={12} className="text-white/30" />
+            </a>
           </div>
         </div>
 
-        {/* Bottom Right Container */}
-        <div className="flex flex-col gap-6">
-           {/* Banners */}
-           <div className="bg-[#38266e] border border-white/10 rounded-2xl p-8 h-40">
-             <h3 className="text-2xl font-display font-bold text-white">Banners:</h3>
-           </div>
-           
-           {/* Rapport */}
-           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex-grow flex items-center justify-between">
-             <div className="max-w-[200px]">
-               <h3 className="text-2xl font-display font-bold text-white mb-2">Rapport:</h3>
-               <p className="text-[10px] text-brand-secondary">
-                 In dit rapport staat alles grondig uitgeschreven. Van KPI's tot concurrentieanalyse tot persona's. Hierin kan je alles terugvinden waar ik over heb nagedacht bij dit project en hoe ik alles heb aangepakt.
-               </p>
-             </div>
-             <FileText size={64} className="text-brand-accent/50 stroke-1" />
-           </div>
+        {/* Rapport */}
+        <a
+          href={rapport}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-white/5 border border-white/10 rounded-2xl p-8 flex items-center justify-between hover:bg-white/10 transition-colors group"
+        >
+          <div className="max-w-[200px]">
+            <h3 className="text-2xl font-display font-bold text-white mb-2">Rapport:</h3>
+            <p className="text-sm text-white/60">
+              Strategie, KPI's, concurrentieanalyse en persona's — alles gebundeld in dit rapport.
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <FileText size={56} className="text-[#8cc63f]/50 stroke-1 group-hover:text-[#8cc63f] transition-colors" />
+            <ExternalLink size={14} className="text-white/30 group-hover:text-white/60 transition-colors" />
+          </div>
+        </a>
+
+        {/* Banners — volle breedte */}
+        <div className="md:col-span-2 bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Banners:</h3>
+          <TabCarousel tabs={bannerTabs} aspectRatio="auto" />
         </div>
 
       </div>

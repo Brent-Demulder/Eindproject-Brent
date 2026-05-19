@@ -1,118 +1,149 @@
+import { useEffect } from "react";
+import { FileText, ExternalLink } from "lucide-react";
 import ProjectLayout from "../../components/ProjectLayout";
-import grpImg from "../../assets/reveals/grp.png";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import TabCarousel from "../../components/TabCarousel";
+
+// Hero
+import heroBanner from "../../assets/banner_designs_pagina's/GRP_Banner_text.png";
+
+// Pagina's
+import pageContent from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Pagina's/GR - Content detailpagina.png";
+import pageMed from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Pagina's/GR - Geneesmiddel detailpagina.png";
+
+// Pop-ups
+import popLogin from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Pop-ups/Login pop-up.png";
+import popFout from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Pop-ups/Foutmeldingen.png";
+import popBevestig from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Pop-ups/Bevestigingsboodschap.png";
+
+// Cards
+import cardMetBeeldRoze from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Cards/GR_Template_MetBeeld_Roze.png";
+import cardZonderBeeldRoze from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Cards/GR_Template_ZonderBeeld_Roze.png";
+import cardZonderBeeldBlauw from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Cards/GR_Template_ZonderBeeld_Blauw.png";
+import cardMetBeeldBlauw from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Cards/GR_Template_MetBeeld_Blauw.png";
+import cardZonderBeeldDonker from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Cards/GR_Template_ZonderBeeld_DonkerBlauw.png";
+import cardAfbeeldingen from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Cards/Afbeeldingen zonder cut.png";
+
+// Grafieken (clean filenames only)
+import grafLenzetto1 from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Grafieken/Lenzetto 1.png";
+import grafFrans from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Grafieken/Frans.png";
+import grafLenzetto2 from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Grafieken/Lenzetto 2 - Nederlands.png";
+import grafFrans3 from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Grafieken/Frans - 3.png";
+import grafFrans1 from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Grafieken/Frans - 1.png";
+
+// PDFs
+import pdfEvenementen from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Pagina's/Landingspagina - evenementen pagina.pdf";
+import pdf404 from "../../assets/WEBSITE BESTANDEN/Gedeon Richter Pro/Pagina's/404 pagina.pdf";
+
+const paginasTabs = [
+  { label: "Pagina's", images: [pageContent, pageMed] },
+];
+
+const popupTabs = [
+  { label: "Pop-ups", images: [popLogin, popFout, popBevestig] },
+];
+
+const cardTabs = [
+  { label: "Cards", images: [cardMetBeeldRoze, cardZonderBeeldRoze, cardMetBeeldBlauw, cardZonderBeeldBlauw, cardZonderBeeldDonker, cardAfbeeldingen] },
+];
+
+const grafiekenTabs = [
+  { label: "Grafieken", images: [grafLenzetto1, grafLenzetto2, grafFrans, grafFrans1, grafFrans3] },
+];
 
 export default function GedeonRichterPro() {
+  useEffect(() => { document.title = "Gedeon Richter Pro — Brent Demulder"; }, []);
   return (
     <ProjectLayout currentProject="Gedeon Richter Pro">
-      {/* Header Info */}
+
+      {/* Header */}
       <div className="mb-10">
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-accent mb-2 block">
-          Eindproject
+        <span className="text-[10px] font-bold uppercase tracking-widest text-[#9b6cff] mb-2 block bg-[#9b6cff]/20 w-fit px-3 py-1 rounded-full border border-[#9b6cff]/30">
+          STAGEPROJECT
         </span>
-        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-pink-500">
+        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#9b6cff] to-[#ff66c4]">
           Gedeon Richter Pro
         </h1>
-        <p className="text-sm text-brand-secondary max-w-2xl">
-          Gedeon Richter Pro is een professionele en informatieve uitwerking voor een medisch platform met sterke inhoudsstructuur.
+        <p className="text-sm text-white/60 max-w-2xl">
+          UX/UI design voor een exclusief medisch platform voor zorgverleners — pagina-designs, content blokken, cards, grafieken en pop-ups.
         </p>
       </div>
 
-      {/* Hero Image */}
+      {/* Hero */}
       <div className="rounded-2xl overflow-hidden mb-12 h-64 md:h-96 relative">
-        <img 
-          src={grpImg} 
-          alt="Gedeon Richter Pro" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1828]/90 to-transparent flex items-center p-8 md:p-12">
-           <div className="max-w-md">
-             <div className="mb-6 flex items-center gap-4">
-                <span className="text-white font-serif italic text-2xl border-l-2 border-brand-accent pl-4">GEDEON RICHTER | <span className="font-sans font-light">PRO</span></span>
-             </div>
-             <h2 className="text-2xl md:text-4xl font-display font-light text-white leading-tight mb-4">
-                Medische expertise.<br/>
-                <span className="text-brand-accent">Betrouwbare informatie.</span><br/>
-                Praktische tools.
-             </h2>
-             <p className="text-white/70 text-xs">
-                Toegang tot uitgebreide medische expertise, betrouwbare informatie en praktische tools voor uw dagelijkse praktijk. Registreer u gratis en raadpleeg Gedeon Richter Pro.
-             </p>
-           </div>
-        </div>
+        <img loading="lazy" src={heroBanner} alt="Gedeon Richter Pro" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
       </div>
 
-      {/* Two Columns */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Left Column - Project Info */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+
+        {/* Project info */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
           <h3 className="text-2xl font-display font-bold text-white mb-4">Project:</h3>
-          <div className="text-sm text-brand-secondary space-y-4 leading-relaxed">
+          <div className="text-sm text-white/70 space-y-4 leading-relaxed">
             <p>
-              Dit was mijn eerste project in JUNE20. Dit is een puur <span className="text-brand-accent font-bold">UX/UI project</span>, waarbij we een 'extensie' van de huidige <span className="text-brand-accent font-bold">Gedeon Richter website</span> moesten maken. Deze website is <span className="text-brand-accent font-bold">exclusief voor dokters en verplegers</span> die een eigen RIZIV-nummer hebben. Het platform bundelt medische expertise en praktische tools op één professionele plek om zorgverleners te ondersteunen in hun dagelijkse praktijk.
+              Dit was mijn eerste project bij JUNE20 — een puur <span className="text-[#9b6cff] font-bold">UX/UI project</span>. We moesten een extensie maken van de bestaande <span className="text-[#9b6cff] font-bold">Gedeon Richter website</span>, exclusief voor dokters en verplegers met een RIZIV-nummer.
             </p>
             <p>
-              Het geeft <span className="text-brand-accent font-bold">medische</span> en <span className="text-brand-accent font-bold">wetenschappelijke informatie</span> over vrouwengezondheid (bijv. contraceptie, baarmoederfibromen, endometriose, vaginale infecties, fertiliteit, menopauze, osteoporose).
+              Het platform bundelt <span className="text-[#9b6cff] font-bold">medische en wetenschappelijke informatie</span> over vrouwengezondheid: contraceptie, endometriose, fertiliteit, menopauze en meer.
             </p>
             <p>
-              Bij deze opdracht had ik samen met Michiel (mijn stagementor) de opdracht gekregen om <span className="text-brand-accent font-bold">nieuwe pagina's</span> te designen en ook verschillende <span className="text-brand-accent font-bold">content blokken</span>. We hebben alle basis pagina's samen aangepakt, en de speciale pagina's zoals de '404' - pagina en de evenementen pagina heb ik volledig zelf mogen designen. Het favicon logo die je op de site ziet heb ik ook zelf mogen designen. Dit was de eerste keer dat ik echt een voldaan gevoel kreeg van een opdracht. Omdat mijn designs dan werden gebruikt op een echte <span className="text-brand-accent font-bold">professionele</span> site. Dit gaf me ook het zelfvertrouwen en motivatie om nog meer te doen en beter te worden in de design wereld.
+              Ik mocht <span className="text-[#9b6cff] font-bold">nieuwe pagina's</span> en <span className="text-[#9b6cff] font-bold">content blokken</span> designen. De speciale pagina's — de <span className="text-[#9b6cff] font-bold">404-pagina</span> en de <span className="text-[#9b6cff] font-bold">evenementenpagina</span> — heb ik volledig zelf ontworpen. Ook het favicon logo is van mijn hand. Het moment dat mijn designs op een echte professionele site verschenen gaf me echt een voldaan gevoel.
             </p>
           </div>
         </div>
 
-        {/* Right Column - Designs Carousel */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <h3 className="text-2xl font-display font-bold text-white mb-6">Designs:</h3>
-          
-          {/* Tabs */}
-          <div className="flex justify-center gap-4 mb-6">
-            <span className="text-xs font-bold text-white cursor-pointer">Pagina's</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Cards</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Grafieken</span>
-            <span className="text-xs font-bold text-brand-secondary cursor-pointer">Pop-ups</span>
-          </div>
+        {/* Pagina's */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Pagina's:</h3>
+          <TabCarousel tabs={paginasTabs} aspectRatio="auto" />
+        </div>
 
-          {/* Carousel Image Area */}
-          <div className="relative bg-[#3b276b] rounded-xl h-64 md:h-[400px] flex items-center justify-center p-6">
-             {/* Placeholder for GRP UI */}
-             <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                <div className="h-6 border-b border-gray-200 flex items-center px-4 gap-2">
-                   <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                   <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-                   <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                </div>
-                <div className="p-4 flex gap-4 h-full">
-                   <div className="w-1/3 bg-blue-50/50 rounded p-2">
-                      <div className="w-full h-4 bg-blue-100 rounded mb-2"></div>
-                      <div className="w-3/4 h-2 bg-blue-100 rounded mb-1"></div>
-                      <div className="w-2/3 h-2 bg-blue-100 rounded"></div>
-                   </div>
-                   <div className="w-2/3 grid grid-cols-2 gap-2">
-                      <div className="bg-pink-50 rounded h-16"></div>
-                      <div className="bg-purple-50 rounded h-16"></div>
-                      <div className="bg-blue-50 rounded h-16"></div>
-                      <div className="bg-teal-50 rounded h-16"></div>
-                   </div>
-                </div>
-             </div>
+        {/* Cards */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Cards:</h3>
+          <TabCarousel tabs={cardTabs} aspectRatio="auto" />
+        </div>
 
-             {/* Carousel Controls */}
-             <button className="absolute left-2 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors">
-               <ArrowLeft size={14} />
-             </button>
-             <button className="absolute right-2 w-8 h-8 rounded-full bg-[#241a4a]/80 text-white flex items-center justify-center hover:bg-brand-accent transition-colors">
-               <ArrowRight size={14} />
-             </button>
+        {/* Pop-ups */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Pop-ups:</h3>
+          <TabCarousel tabs={popupTabs} aspectRatio="auto" />
+        </div>
 
-             {/* Dots */}
-             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-accent"></div>
-                <div className="w-1.5 h-1.5 rounded-full bg-white/30"></div>
-                <div className="w-1.5 h-1.5 rounded-full bg-white/30"></div>
-                <div className="w-1.5 h-1.5 rounded-full bg-white/30"></div>
-             </div>
+        {/* Grafieken — full width */}
+        <div className="md:col-span-2 bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+          <h3 className="text-2xl font-display font-bold text-white mb-4">Grafieken:</h3>
+          <TabCarousel tabs={grafiekenTabs} aspectRatio="auto" />
+        </div>
+
+        {/* PDF downloads */}
+        <div className="md:col-span-2 bg-white/5 border border-white/10 rounded-2xl p-8">
+          <h3 className="text-2xl font-display font-bold text-white mb-6">Speciale pagina's:</h3>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href={pdfEvenementen}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex flex-col items-center gap-3 p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+            >
+              <FileText size={40} className="text-[#9b6cff]/60 group-hover:text-[#9b6cff] transition-colors" />
+              <span className="text-sm font-bold text-white/70 group-hover:text-white transition-colors text-center">Evenementenpagina</span>
+              <ExternalLink size={12} className="text-white/30" />
+            </a>
+            <a
+              href={pdf404}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex flex-col items-center gap-3 p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+            >
+              <FileText size={40} className="text-[#9b6cff]/60 group-hover:text-[#9b6cff] transition-colors" />
+              <span className="text-sm font-bold text-white/70 group-hover:text-white transition-colors text-center">404 Pagina</span>
+              <ExternalLink size={12} className="text-white/30" />
+            </a>
           </div>
         </div>
+
       </div>
     </ProjectLayout>
   );
