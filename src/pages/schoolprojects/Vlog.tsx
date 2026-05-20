@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import ProjectLayout from "../../components/ProjectLayout";
 
-import vlogVideo from "../../assets/Schoolprojecten/Vlog_(Day_In_The_Life)/versie1.mp4";
+import vlogVideo from "../../assets/Schoolprojecten/Vlog_(Day_In_The_Life)/2526_WPLOJ_DemulderB_Filmpje.mp4";
 
 export default function Vlog() {
   useEffect(() => { document.title = "Vlog — Brent Demulder"; }, []);
