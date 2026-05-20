@@ -1,7 +1,6 @@
 import { useEffect } from "react";
+import { Play } from "lucide-react";
 import ProjectLayout from "../../components/ProjectLayout";
-
-import caseVideo from "../../assets/Schoolprojecten/Case/2526_WPLOJ_DemulderB_Showcase.mp4";
 
 export default function Case() {
   useEffect(() => { document.title = "Case — Brent Demulder"; }, []);
@@ -21,15 +20,13 @@ export default function Case() {
         </p>
       </div>
 
-      {/* Video player */}
-      <div className="rounded-2xl overflow-hidden mb-12 bg-black relative">
-        <video
-          src={caseVideo}
-          controls
-          playsInline
-          preload="none"
-          className="w-full max-h-[600px] object-contain"
-        />
+      {/* Video placeholder */}
+      <div className="rounded-2xl mb-12 bg-[#1e1440] border border-[#9b6cff]/10 flex flex-col items-center justify-center gap-5 py-20">
+        <Play size={56} className="text-[#9b6cff]/40 stroke-1" />
+        <div className="text-center">
+          <p className="text-white font-bold mb-1">Video presentatie</p>
+          <p className="text-white/40 text-sm">Beschikbaar op aanvraag</p>
+        </div>
       </div>
 
       {/* Info grid */}
